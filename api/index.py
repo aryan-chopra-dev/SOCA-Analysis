@@ -6,7 +6,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any, List
 
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, HTTPException, Response, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -375,7 +375,13 @@ async def save_feedback(payload: FeedbackPayload):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/api/debug")
+async def debug_info(request: Request):
+    return {"path": request.url.path, "method": request.method}
 
+@app.api_route("/{path_name:path}", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH", "TRACE"])
+async def catch_all(request: Request, path_name: str):
+    return {"detail": "Not Found Catch All", "path": request.url.path, "path_name": path_name}
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("api:app", host="127.0.0.1", port=8000, reload=True)
