@@ -37,6 +37,36 @@ class ScoringEngine:
         if "Error log" not in behavior["study_techniques"]:
             patterns.append("missing_error_log")
 
+        # Derived composite scores for Metrics & Analytics page
+        avg_subject = round((academic["physics_proficiency"] + academic["chemistry_proficiency"] + academic["math_proficiency"]) / 3)
+        readiness_score = min(100, round(avg_subject * 0.45 + discipline * 0.3 + (100 - min(stress_numeric, 100)) * 0.15 + revision * 0.1))
+
+        readiness_labels = [
+            (90, "Peak Performer"),
+            (80, "Highly Capable"),
+            (70, "On Track"),
+            (60, "Needs Focus"),
+            (0,  "Needs Significant Work"),
+        ]
+        readiness_interpretation = next(label for threshold, label in readiness_labels if readiness_score >= threshold)
+
+        confidence_alignment = round((confidence / 100) * 50 + (avg_subject / 100) * 50)
+        confidence_gap = abs(confidence - avg_subject)
+        if confidence_gap <= 15:
+            confidence_status = "ALIGNED"
+            confidence_interpretation = "Confidence and accuracy levels are calibrated perfectly."
+        elif confidence > avg_subject:
+            confidence_status = "OVERCONFIDENT"
+            confidence_interpretation = f"Confidence ({confidence}%) exceeds subject scores ({avg_subject}%). Risk of exam-day shock."
+        else:
+            confidence_status = "UNDERCONFIDENT"
+            confidence_interpretation = f"Subject scores ({avg_subject}%) exceed stated confidence ({confidence}%). Build momentum with easier wins."
+
+        wellness_raw = round((7 - behavior["mock_anxiety_rating"]) * 10 + behavior["sleep_quality_rating"] * 8)
+        wellness_score = min(100, max(0, wellness_raw))
+        burnout_risk = "HIGH" if behavior["mock_anxiety_rating"] >= 4 and behavior["sleep_quality_rating"] <= 2 else \
+                       "MODERATE" if behavior["mock_anxiety_rating"] >= 3 or behavior["sleep_quality_rating"] <= 3 else "NORMAL"
+
         profile_id = hashlib.sha1(str(response).encode("utf-8")).hexdigest()[:12]
         return {
             "profile_id": profile_id,
@@ -54,6 +84,13 @@ class ScoringEngine:
             "confidence_score": confidence,
             "revision_consistency_score": revision,
             "problem_solving_score": problem_solving,
+            "readiness_score": readiness_score,
+            "readiness_interpretation": readiness_interpretation,
+            "confidence_alignment": confidence_alignment,
+            "confidence_status": confidence_status,
+            "confidence_interpretation": confidence_interpretation,
+            "wellness_score": wellness_score,
+            "burnout_risk": burnout_risk,
             "weak_topics": academic["weak_topics"],
             "behavioral_patterns": patterns,
             "study_techniques": behavior["study_techniques"],

@@ -43,6 +43,8 @@ class TestEngine:
             "topic": question_set["topic"],
             "subject": question_set.get("subject", ""),
             "evaluated_at": datetime.utcnow().isoformat() + "Z",
+            "correct_answers": correct_count,
+            "total_questions": len(questions),
             "accuracy": accuracy,
             "difficulty_handling": difficulty_handling,
             "average_time_seconds": avg_time,
