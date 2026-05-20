@@ -379,3 +379,6 @@ async def save_feedback(payload: FeedbackPayload):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("api:app", host="127.0.0.1", port=8000, reload=True)
+
+# Vercel serverless function entry point
+handler = app
