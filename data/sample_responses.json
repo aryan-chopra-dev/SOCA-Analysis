@@ -1,0 +1,105 @@
+[
+  {
+    "student": {
+      "name": "Aarav Sharma",
+      "target_attempt": "JEE Main 2026"
+    },
+    "academic": {
+      "physics_proficiency": 64,
+      "chemistry_proficiency": 58,
+      "math_proficiency": 72,
+      "weak_topics": ["Rotation", "Organic Chemistry", "Integration"]
+    },
+    "behavior": {
+      "weekly_hours": 38,
+      "time_management_rating": 3,
+      "revision_days_per_week": 3,
+      "problem_solving_rating": 4,
+      "mock_test_frequency": "Fortnightly",
+      "mock_anxiety_rating": 4,
+      "sleep_quality_rating": 3,
+      "study_techniques": ["Formula notebook", "Video lectures"],
+      "resources": ["Coaching modules", "PYQs", "YouTube"],
+      "confidence_rating": 3,
+      "short_answer_blocker": "I understand concepts but lose marks in mixed-topic tests because I panic and skip revision."
+    },
+    "topic_tracking": {
+      "Physics": {
+        "completed": ["Kinematics", "Rotation"],
+        "partial": ["NLM"],
+        "untouched": ["Current Electricity"],
+        "topic_details": {
+          "Kinematics": {
+            "confidence": "High",
+            "last_revision_date": "2026-05-05",
+            "practice_questions_solved": 140,
+            "mock_test_exposure": "Sectional test"
+          },
+          "Rotation": {
+            "confidence": "High",
+            "last_revision_date": "2026-03-20",
+            "practice_questions_solved": 65,
+            "mock_test_exposure": "Topic test"
+          }
+        }
+      },
+      "Chemistry": {
+        "completed": ["Organic Chemistry"],
+        "partial": ["Thermodynamics"],
+        "untouched": ["Coordination Compounds"],
+        "topic_details": {
+          "Organic Chemistry": {
+            "confidence": "Medium",
+            "last_revision_date": "2026-04-01",
+            "practice_questions_solved": 90,
+            "mock_test_exposure": "Topic test"
+          }
+        }
+      },
+      "Mathematics": {
+        "completed": ["Differentiation", "Integration"],
+        "partial": ["Differential Equations"],
+        "untouched": ["Probability"],
+        "topic_details": {
+          "Differentiation": {
+            "confidence": "Medium",
+            "last_revision_date": "2026-05-10",
+            "practice_questions_solved": 180,
+            "mock_test_exposure": "Full mock"
+          },
+          "Integration": {
+            "confidence": "Low",
+            "last_revision_date": "2026-04-10",
+            "practice_questions_solved": 75,
+            "mock_test_exposure": "Sectional test"
+          }
+        }
+      }
+    },
+    "diagnostic_attempts": {
+      "Kinematics": {
+        "answers": ["B", "B", "B", "B", "A"],
+        "time_taken_seconds": [80, 90, 130, 140, 260]
+      },
+      "Rotation": {
+        "answers": ["B", "A", "B", "C", "A"],
+        "time_taken_seconds": [95, 120, 180, 210, 310]
+      },
+      "Organic Chemistry": {
+        "answers": ["B", "B", "A", "B", "A"],
+        "time_taken_seconds": [90, 100, 160, 150, 290]
+      },
+      "Differentiation": {
+        "answers": ["B", "B", "B", "B", "B"],
+        "time_taken_seconds": [70, 85, 125, 135, 230]
+      },
+      "Integration": {
+        "answers": ["B", "A", "B", "B", "A"],
+        "time_taken_seconds": [100, 130, 180, 190, 320]
+      }
+    },
+    "metadata": {
+      "created_at": "2026-05-19T00:00:00Z"
+    }
+  }
+]

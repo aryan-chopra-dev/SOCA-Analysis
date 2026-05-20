@@ -1,0 +1,5 @@
+Students with weak prerequisites should avoid jumping directly into advanced JEE problems. First solve concept checks, then standard examples, then PYQs.
+
+An error log should classify mistakes into concept gap, calculation slip, misread question, time pressure, and anxiety trigger. The next practice block should target the most frequent tag.
+
+For topic revision, a useful loop is same-day recall, three-day review, and seven-day mixed practice. This works well for formulas, mechanisms, and standard problem types.

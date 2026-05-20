@@ -1,0 +1,11 @@
+Physics chapters such as Rotation depend strongly on Vectors, Kinematics, Newton's Laws of Motion, and Work Power Energy.
+
+Organic Chemistry improves when students connect chemical bonding, electronic effects, mechanisms, and repeated reaction pattern recall.
+
+Integration requires confidence in differentiation, trigonometry, algebraic manipulation, and application of derivatives.
+
+For Rotation, revise torque, angular momentum, rolling motion, and energy links with Work Power Energy before attempting advanced mixed problems.
+
+For Kinematics weakness, repair vectors, relative motion, graph interpretation, and equation selection before moving to NLM and Rotation.
+
+For Calculus readiness, alternate formula recall with application questions. Integration improves when substitution, parts, and definite integral properties are practiced separately before mixed quizzes.

@@ -1,0 +1,31 @@
+{
+  "Physics": [
+    "Units and Dimensions",
+    "Vectors",
+    "Kinematics",
+    "NLM",
+    "Work Power Energy",
+    "Rotation",
+    "Electrostatics",
+    "Current Electricity",
+    "Modern Physics"
+  ],
+  "Chemistry": [
+    "Mole Concept",
+    "Chemical Bonding",
+    "Thermodynamics",
+    "Equilibrium",
+    "Organic Chemistry",
+    "Coordination Compounds"
+  ],
+  "Mathematics": [
+    "Functions",
+    "Limits",
+    "Differentiation",
+    "AOD",
+    "Integration",
+    "Differential Equations",
+    "Matrices",
+    "Probability"
+  ]
+}
