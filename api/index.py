@@ -270,7 +270,7 @@ def run_soca_pipeline(response_data: dict) -> dict:
     }
 
 
-@app.get("/api/topics")
+@app.get("/topics")
 async def get_topics():
     try:
         if not TOPICS_FILE.exists():
@@ -280,7 +280,7 @@ async def get_topics():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/api/questions")
+@app.get("/questions")
 async def get_questions(subject: str, topic: str):
     try:
         q_gen = QuestionGenerator()
@@ -290,7 +290,7 @@ async def get_questions(subject: str, topic: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/api/sample")
+@app.get("/sample")
 async def get_sample():
     try:
         sample_path = DATA_DIR / "sample_responses.json"
@@ -329,7 +329,7 @@ async def get_sample():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/api/evaluate")
+@app.post("/evaluate")
 async def evaluate_questionnaire(payload: QuestionnairePayload):
     try:
         # Save to latest response to keep history
@@ -344,7 +344,7 @@ async def evaluate_questionnaire(payload: QuestionnairePayload):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/api/pdf")
+@app.post("/pdf")
 async def get_pdf_report(payload: Dict[str, Any]):
     try:
         # Expects payload to be the output of run_soca_pipeline
@@ -358,7 +358,7 @@ async def get_pdf_report(payload: Dict[str, Any]):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/api/feedback")
+@app.post("/feedback")
 async def save_feedback(payload: FeedbackPayload):
     try:
         DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -375,13 +375,7 @@ async def save_feedback(payload: FeedbackPayload):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/api/debug")
-async def debug_info(request: Request):
-    return {"path": request.url.path, "method": request.method}
 
-@app.api_route("/{path_name:path}", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH", "TRACE"])
-async def catch_all(request: Request, path_name: str):
-    return {"detail": "Not Found Catch All", "path": request.url.path, "path_name": path_name}
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("api:app", host="127.0.0.1", port=8000, reload=True)
