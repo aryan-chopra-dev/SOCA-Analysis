@@ -270,7 +270,7 @@ def run_soca_pipeline(response_data: dict) -> dict:
     }
 
 
-@app.get("/topics")
+@app.get("/api/topics")
 async def get_topics():
     try:
         if not TOPICS_FILE.exists():
@@ -280,7 +280,7 @@ async def get_topics():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/questions")
+@app.get("/api/questions")
 async def get_questions(subject: str, topic: str):
     try:
         q_gen = QuestionGenerator()
@@ -290,7 +290,7 @@ async def get_questions(subject: str, topic: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/sample")
+@app.get("/api/sample")
 async def get_sample():
     try:
         sample_path = DATA_DIR / "sample_responses.json"
@@ -329,7 +329,7 @@ async def get_sample():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/evaluate")
+@app.post("/api/evaluate")
 async def evaluate_questionnaire(payload: QuestionnairePayload):
     try:
         # Save to latest response to keep history
@@ -344,7 +344,7 @@ async def evaluate_questionnaire(payload: QuestionnairePayload):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/pdf")
+@app.post("/api/pdf")
 async def get_pdf_report(payload: Dict[str, Any]):
     try:
         # Expects payload to be the output of run_soca_pipeline
@@ -358,7 +358,7 @@ async def get_pdf_report(payload: Dict[str, Any]):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.post("/feedback")
+@app.post("/api/feedback")
 async def save_feedback(payload: FeedbackPayload):
     try:
         DATA_DIR.mkdir(parents=True, exist_ok=True)
