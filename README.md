@@ -267,25 +267,11 @@ Add screenshots after running locally:
 - ![Another View](screenshots/Screenshot%202026-05-21%20052151.png)
 - ![Metrics](screenshots/Screenshot%202026-05-21%20053700.png)
 - ![Feedback](screenshots/Screenshot%202026-05-21%20053716.png)
+- ![Additional](screenshots\Screenshot 2026-05-21 053821.png)
 - ![Graph](screenshots/Screenshot%202026-05-21%20053840.png)
-- ![Additional](screenshots/Screenshot%202026-05-21%20053954.png)
-- ![More](screenshots/Screenshot%202026-05-21%20053984.png)
-- ![Final](screenshots/Screenshot%202026-05-21%20053913.png)
+
 - ![Summary](screenshots/Screenshot%202026-05-21%20053934.png)
-
-Add screenshots after running locally:
-
-- `screenshots\Screenshot 2026-05-21 052104.png`
-- `screenshots\Screenshot 2026-05-21 052135.png`
-- `screenshots\Screenshot 2026-05-21 052335.png`
-- `screenshots\Screenshot 2026-05-21 052151.png`
-- `screenshots\Screenshot 2026-05-21 053700.png`
-- `screenshots\Screenshot 2026-05-21 053716.png`
-- `screenshots\Screenshot 2026-05-21 053840.png`
-- `screenshots\Screenshot 2026-05-21 053840.png`
-- `screenshots\Screenshot 2026-05-21 053854.png`
-- `screenshots\Screenshot 2026-05-21 053913.png`
-- `screenshots\Screenshot 2026-05-21 053934.png`
+- ![Final](screenshots/Screenshot%202026-05-21%20053913.png)
 
 
 ## Bonus Features Included

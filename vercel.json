@@ -1,0 +1,22 @@
+{
+  "$schema": "https://vercel.com/static/schema.json",
+  "version": 2,
+  "builds": [
+    {
+      "src": "react-frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    },
+    {
+      "src": "backend/api.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "50mb" }
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/backend/api.py" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/react-frontend/$1" }
+  ],
+  "ignoredBuildStep": false
+}

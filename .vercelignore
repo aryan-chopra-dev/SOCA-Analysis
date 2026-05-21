@@ -1,0 +1,11 @@
+# Exclude node‑modules – not needed for the Python runtime
+node_modules/
+react-frontend/node_modules/
+react-frontend/dist/
+
+# Exclude compiled Vite artifacts (already built as static)
+react-frontend/.vite/
+
+# Exclude large data files not required for API runtime
+data/
+screenshots/
