@@ -17,6 +17,6 @@
     { "src": "/api/(.*)", "dest": "/backend/api.py" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/react-frontend/$1" }
-  ],
-  "ignoredBuildStep": false
+  ]
+
 }

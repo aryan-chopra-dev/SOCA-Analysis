@@ -1,4 +1,7 @@
-!react-frontend/**
+react-frontend/node_modules/
+react-frontend/dist/
+react-frontend/dist-ssr/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
