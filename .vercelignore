@@ -1,11 +1,21 @@
-# Exclude node‑modules – not needed for the Python runtime
+# Exclude node-modules and python virtual environments
 node_modules/
+**/node_modules/
+venv/
+.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+.git/
+
+# Exclude react-frontend build files from python lambda (they are built statically anyway)
 react-frontend/node_modules/
 react-frontend/dist/
-
-# Exclude compiled Vite artifacts (already built as static)
 react-frontend/.vite/
 
-# Exclude large data files not required for API runtime
-data/
+# Exclude dynamic/local data files
+data/feedback.jsonl
+data/latest_response.json
+
+# Exclude screenshots
 screenshots/

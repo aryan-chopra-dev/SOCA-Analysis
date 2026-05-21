@@ -70,6 +70,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ASGI Middleware to strip /api prefix from request paths in production (Vercel)
+@app.middleware("http")
+async def strip_api_prefix(request, call_next):
+    path = request.scope.get("path", "")
+    if path.startswith("/api"):
+        request.scope["path"] = path[4:] or "/"
+        raw_path = request.scope.get("raw_path", b"")
+        if raw_path.startswith(b"/api"):
+            request.scope["raw_path"] = raw_path[4:] or b"/"
+    return await call_next(request)
+
 DATA_DIR = ROOT_DIR / "data"
 FEEDBACK_FILE = DATA_DIR / "feedback.jsonl"
 RESPONSES_FILE = DATA_DIR / "latest_response.json"
@@ -332,9 +343,18 @@ async def get_sample():
 @app.post("/evaluate")
 async def evaluate_questionnaire(payload: QuestionnairePayload):
     try:
-        # Save to latest response to keep history
-        RESPONSES_FILE.parent.mkdir(parents=True, exist_ok=True)
-        RESPONSES_FILE.write_text(json.dumps(payload.data, indent=2), encoding="utf-8")
+        # Save to latest response to keep history (wrapped in try-except for read-only serverless filesystems)
+        try:
+            RESPONSES_FILE.parent.mkdir(parents=True, exist_ok=True)
+            RESPONSES_FILE.write_text(json.dumps(payload.data, indent=2), encoding="utf-8")
+        except Exception as file_err:
+            print(f"Warning: Could not write response locally ({file_err}). Attempting to save to /tmp...")
+            try:
+                tmp_responses = Path("/tmp/latest_response.json")
+                tmp_responses.parent.mkdir(parents=True, exist_ok=True)
+                tmp_responses.write_text(json.dumps(payload.data, indent=2), encoding="utf-8")
+            except Exception as tmp_err:
+                print(f"Warning: Could not write response to /tmp ({tmp_err})")
         
         report = run_soca_pipeline(payload.data)
         return report
@@ -360,20 +380,31 @@ async def get_pdf_report(payload: Dict[str, Any]):
 
 @app.post("/feedback")
 async def save_feedback(payload: FeedbackPayload):
+    feedback_entry = {
+        "student_name": payload.student_name,
+        "feedback": payload.feedback,
+        "rating": payload.rating,
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "metadata": payload.metadata
+    }
+    
+    # Attempt local write, fallback to /tmp on serverless environments
     try:
         DATA_DIR.mkdir(parents=True, exist_ok=True)
-        feedback_entry = {
-            "student_name": payload.student_name,
-            "feedback": payload.feedback,
-            "rating": payload.rating,
-            "timestamp": datetime.utcnow().isoformat() + "Z",
-            "metadata": payload.metadata
-        }
         with FEEDBACK_FILE.open("a", encoding="utf-8") as f:
             f.write(json.dumps(feedback_entry) + "\n")
-        return {"status": "success", "message": "Feedback saved successfully"}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    except Exception as file_err:
+        print(f"Warning: Could not write feedback locally ({file_err}). Attempting to save to /tmp...")
+        try:
+            tmp_dir = Path("/tmp")
+            tmp_dir.mkdir(parents=True, exist_ok=True)
+            tmp_feedback = tmp_dir / "feedback.jsonl"
+            with tmp_feedback.open("a", encoding="utf-8") as f:
+                f.write(json.dumps(feedback_entry) + "\n")
+        except Exception as tmp_err:
+            print(f"Warning: Could not write feedback to /tmp ({tmp_err})")
+            
+    return {"status": "success", "message": "Feedback saved successfully"}
 
 
 if __name__ == "__main__":
