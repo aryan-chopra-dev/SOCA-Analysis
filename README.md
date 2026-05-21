@@ -257,33 +257,44 @@ Readiness uses:
 
 The resulting topic reports feed the SOCA generator, knowledge graph dependency reasoning, RAG retrieval, and personalized roadmap.
 
-## Screenshots
+# Screenshots
 
 Add screenshots after running locally:
 
-- `docs/screenshots/questionnaire.png`
-- `docs/screenshots/soca_report.png`
-- `docs/screenshots/agent_outputs.png`
+- ![Questionnaire](screenshots/Screenshot%202026-05-21%20052104.png)
+- ![SOCA Report](screenshots/Screenshot%202026-05-21%20052135.png)
+- ![Agent Outputs](screenshots/Screenshot%202026-05-21%20052335.png)
+- ![Another View](screenshots/Screenshot%202026-05-21%20052151.png)
+- ![Metrics](screenshots/Screenshot%202026-05-21%20053700.png)
+- ![Feedback](screenshots/Screenshot%202026-05-21%20053716.png)
+- ![Graph](screenshots/Screenshot%202026-05-21%20053840.png)
+- ![Additional](screenshots/Screenshot%202026-05-21%20053954.png)
+- ![More](screenshots/Screenshot%202026-05-21%20053984.png)
+- ![Final](screenshots/Screenshot%202026-05-21%20053913.png)
+- ![Summary](screenshots/Screenshot%202026-05-21%20053934.png)
 
-## Human-in-the-Loop Workflow
+Add screenshots after running locally:
 
-The dashboard includes a student usefulness rating and teacher-editable recommendation box. Feedback is saved to `data/feedback.jsonl`. This can later be used for reinforcement learning or active learning pipelines after proper data governance and review.
+- `screenshots\Screenshot 2026-05-21 052104.png`
+- `screenshots\Screenshot 2026-05-21 052135.png`
+- `screenshots\Screenshot 2026-05-21 052335.png`
+- `screenshots\Screenshot 2026-05-21 052151.png`
+- `screenshots\Screenshot 2026-05-21 053700.png`
+- `screenshots\Screenshot 2026-05-21 053716.png`
+- `screenshots\Screenshot 2026-05-21 053840.png`
+- `screenshots\Screenshot 2026-05-21 053840.png`
+- `screenshots\Screenshot 2026-05-21 053854.png`
+- `screenshots\Screenshot 2026-05-21 053913.png`
+- `screenshots\Screenshot 2026-05-21 053934.png`
+
 
 ## Bonus Features Included
 
 - Adaptive weak-topic selection through questionnaire controls
 - Topic mastery heatmap
 - Confidence, accuracy, stress, and discipline comparisons
-- HuggingFace Spaces deployment-ready Streamlit structure
 - Optional LLM backend with local deterministic fallback
 
-## HuggingFace Spaces Deployment
-
-1. Create a new Streamlit Space.
-2. Upload this repository.
-3. Keep `requirements.txt` at the repo root.
-4. If using a hosted model, set environment variables or modify `SOCAGenerator` to call an inference endpoint.
-5. For CPU Spaces, keep the deterministic fallback enabled or use a small model.
 
 ## Future Scope
 
